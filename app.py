@@ -7,6 +7,7 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 import io
+import sys
 
 # Load DataFrame from Excel
 df = pd.read_excel('Ledningsägare.xlsx')
@@ -309,4 +310,7 @@ def download_excel(n_clicks, stored_data):
 
 # Uncomment to initialize the app
 if __name__ == '__main__':
-    app.run_server(debug=True, host="0.0.0.0", port=4093,  use_reloader=False)
+    if getattr(sys, 'frozen', False):
+        app.run_server(debug=False, host="0.0.0.0", port=4093,  use_reloader=False)
+    else:
+        app.run_server(debug=True, host="0.0.0.0", port=4093,  use_reloader=False)
