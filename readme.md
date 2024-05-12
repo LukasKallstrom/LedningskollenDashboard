@@ -2,7 +2,7 @@
 # Dash Application
 
 ## Overview
-This repository contains a Dash application designed to search and process data from an Excel file named "Ledningsägare.xlsx". The application specifically looks for data in the row labeled "Omsättning (tkr)" and provides a user-friendly interface to visualize and interact with this data.
+This repository contains a Dash application designed to search and process data from an Excel file named "Ledningsägare.xlsx". The application specifically looks for data in the row labeled "Omsättning (tkr)" and provides a user-friendly interface to visualize and interact with this data, aswell as downloading an excel of the filtered data (currently downloads all the data for the selected companies, not only the selected columns).
 
 All company names were collected from "[https://www.ledningskollen.se/Vilka-ar-med_](https://www.ledningskollen.se/Vilka-ar-med_)" and all revenue data was collected from "[Allabolag.se](https://www.allabolag.se/)", websites and data open to the public.
 
