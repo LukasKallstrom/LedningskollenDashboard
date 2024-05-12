@@ -4,6 +4,8 @@
 ## Overview
 This repository contains a Dash application designed to search and process data from an Excel file named "Ledningsägare.xlsx". The application specifically looks for data in the row labeled "Omsättning (tkr)" and provides a user-friendly interface to visualize and interact with this data.
 
+All company names were collected from "[https://www.ledningskollen.se/Vilka-ar-med_](https://www.ledningskollen.se/Vilka-ar-med_)" and all revenue data was collected from "[Allabolag.se](https://www.allabolag.se/)", websites and data open to the public.
+
 ## Getting Started
 
 ### Prerequisites
@@ -27,7 +29,8 @@ Before running the application, ensure you have Docker installed on your machine
    docker run -p 4093:4093 dash-app
    ```
 
-   This command will start the application and make it accessible at `http://localhost:4093`.
+   This command will start the application and make it accessible at `http://localhost:4093`
+   (feel free to change the port, but remember to change the port in both the dockerfile aswell as in this command)
 
 ## Creating an Executable with PyInstaller
 
