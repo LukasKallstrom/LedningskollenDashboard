@@ -156,12 +156,11 @@ app.layout = dbc.Container(
                 value='exclusive',  # Default to exclusive
                 labelStyle={'display': 'block'}
             ),
-            html.Div([
-                # ... existing components ...
-                html.Button("Download Excel", id="btn_excel"),
-                dcc.Download(id="download-excel"),
-                dcc.Store(id='store-dataframe')
-            ])
+            dbc.Col([
+            html.Button("Download Excel", id="btn_excel"),
+            dcc.Download(id="download-excel"),
+            dcc.Store(id='store-dataframe', data=df.to_dict('records'))
+        ], width=12)
         ],
           width=3),
     ]),
@@ -294,19 +293,13 @@ def download_excel(n_clicks, stored_data):
     if stored_data is None:
         raise dash.exceptions.PreventUpdate
 
-    # Convert the stored JSON data back to a dataframe
+    # Convert the stored JSON data back to a DataFrame
     current_df = pd.DataFrame.from_dict(stored_data)
 
-    # Convert the dataframe to an Excel file in memory
-    output = io.BytesIO()
-    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        current_df.to_excel(writer, sheet_name='Sheet1')
-    output.seek(0)
-    
-    # Send the file to the user's browser
+    # Use dcc.send_data_frame to convert DataFrame to Excel and send it as a download
+    return dcc.send_data_frame(current_df.to_excel, "filtered_data.xlsx", engine="xlsxwriter")
 
-    return dcc.send_bytes(output, "my_dataframe.xlsx")
 
 # Uncomment to initialize the app
 if __name__ == '__main__':
-    app.run_server(debug=True, host="0.0.0.0", port=4093,  use_reloader=False)
+    app.run_server(debug=True, host="0.0.0.0", port=4093,  use_reloader=True)
