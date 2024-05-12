@@ -29,8 +29,39 @@ Before running the application, ensure you have Docker installed on your machine
 
    This command will start the application and make it accessible at `http://localhost:4093`.
 
+## Creating an Executable with PyInstaller
+
+To create an executable for your application, you'll need to use PyInstaller. Follow these steps to setup and build the executable:
+
+### Prerequisites
+Ensure you have PyInstaller installed. If not, you can install it using pip:
+
+```bash
+pip install pyinstaller
+```
+
+### Building the Executable
+
+1. **Prepare your files:**
+   - Ensure you have the `app.py` script in your working directory.
+   - Make sure that an Excel file named `Ledningsägare.xlsx` is present in the same directory as your script. This file is necessary for the executable to function properly.
+
+2. **Generate the executable:**
+   - Run the following command in your terminal or command prompt:
+
+```bash
+pyinstaller --onefile --add-data "Ledningsägare.xlsx;." app.py
+```
+
+   - This command tells PyInstaller to bundle everything into a single executable file including the `Ledningsägare.xlsx` file. The resulting file `app.exe` will be located in the `dist` folder within your current directory.
+
+### Running the Executable
+
+- After building, you can run `app.exe` directly from the `dist` folder as long as the `Ledningsägare.xlsx` file is in the same folder as the executable.
+
+
 ## Features
-- **Excel Data Processing**: The app is capable of reading the "Omsättning (tkr)" row from the "Ledningsägare.xlsx" file to analyze and display relevant financial data.
+- **Excel Data Processing**: The app is capable of reading the "Ledningsägare.xlsx" file to analyze and display relevant financial data.
 - **Interactive Dashboards**: Users can interact with visualizations to better understand the data.
 
 ## Contributing
